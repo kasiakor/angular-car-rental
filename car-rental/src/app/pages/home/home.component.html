@@ -1,0 +1,138 @@
+<!-- home.component.html -->
+<section class="home-hero">
+  <div class="home-hero__overlay"></div>
+
+  <div class="container home-hero__content text-center">
+    <h1 class="home-hero__title">Find Your Perfect Rental Car</h1>
+    <p class="home-hero__subtitle">
+      Rent a car from trusted hosts or earn money by sharing your vehicle
+    </p>
+
+    <!-- Search bar (single bar like base UI) -->
+    <div class="hero-searchbar mx-auto">
+      <form class="hero-searchbar__form" (submit)="$event.preventDefault()">
+        <!-- Location -->
+        <div class="hero-searchbar__item hero-searchbar__item--location">
+          <i class="fa-solid fa-location-dot hero-searchbar__fa"></i>
+          <input
+            class="hero-searchbar__input"
+            type="text"
+            placeholder="Location"
+          />
+        </div>
+
+        <div class="hero-searchbar__divider"></div>
+
+        <!-- Pickup date (1 icon only) -->
+        <div class="hero-searchbar__item">
+          <input
+            class="hero-searchbar__input"
+            type="date"
+            placeholder="dd-mm-yyyy"
+          />
+        </div>
+
+        <div class="hero-searchbar__divider"></div>
+
+        <!-- Return date (1 icon only) -->
+        <div class="hero-searchbar__item">
+          <input
+            class="hero-searchbar__input"
+            type="date"
+            placeholder="dd-mm-yyyy"
+          />
+        </div>
+
+        <!-- Blue Search button (matches your app) -->
+        <button type="submit" class="hero-searchbar__btn">
+          <i class="fa-solid fa-magnifying-glass me-2"></i>
+          Search
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- Why Choose -->
+<section class="why-choose py-5">
+  <div class="container">
+    <h2 class="section-title text-center mb-4">Why Choose CarRent?</h2>
+
+    <div class="row g-4 justify-content-center">
+      <div class="col-12 col-md-6 col-lg-4">
+        <div class="feature text-center h-100">
+          <div class="feature-icon">
+            <i class="fa-solid fa-shield-halved"></i>
+          </div>
+          <h5 class="feature-title">Safe &amp; Secure</h5>
+          <p class="feature-text mb-0">
+            All hosts are verified and cars are regularly inspected.
+          </p>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-6 col-lg-4">
+        <div class="feature text-center h-100">
+          <div class="feature-icon">
+            <i class="fa-solid fa-tags"></i>
+          </div>
+          <h5 class="feature-title">Best Prices</h5>
+          <p class="feature-text mb-0">
+            Competitive prices and no hidden fees.
+          </p>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-6 col-lg-4">
+        <div class="feature text-center h-100">
+          <div class="feature-icon">
+            <i class="fa-solid fa-location-crosshairs"></i>
+          </div>
+          <h5 class="feature-title">Convenient Locations</h5>
+          <p class="feature-text mb-0">
+            Find cars near you with our location-based search.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<footer class="site-footer mt-auto">
+  <div class="container">
+    <div class="row align-items-center gy-3">
+      <!-- Brand -->
+      <div class="col-md-4 text-center text-md-start">
+        <span class="footer-brand">
+          <i class="fa-solid fa-car-side me-2"></i>
+          CarRent
+        </span>
+      </div>
+
+      <!-- Links -->
+      <div class="col-md-4 text-center">
+        <a href="#" class="footer-link">Home</a>
+        <a href="#" class="footer-link">Search Cars</a>
+        <a href="#" class="footer-link">Host Your Car</a>
+      </div>
+
+      <!-- Social -->
+      <div class="col-md-4 text-center text-md-end">
+        <a href="#" class="footer-social">
+          <i class="fa-brands fa-facebook-f"></i>
+        </a>
+        <a href="#" class="footer-social">
+          <i class="fa-brands fa-twitter"></i>
+        </a>
+        <a href="#" class="footer-social">
+          <i class="fa-brands fa-instagram"></i>
+        </a>
+      </div>
+    </div>
+
+    <hr class="footer-divider" />
+
+    <div class="text-center footer-copy">
+      © 2026 CarRent. All rights reserved.
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,271 @@
+/* home.component.css */
+
+/* Match navbar vibe (dark slate/blue) */
+/* Use the same palette as your navbar/footer screenshot */
+:root {
+  --app-navy: #112645; /* navbar */
+  --app-navy-2: #1b304d; /* navbar gradient */
+  --app-footer: #263846; /* footer block */
+  --app-blue: #4ea3ff; /* brand accent blue */
+  --app-blue-2: #2f7de1; /* button blue */
+}
+
+/* HERO */
+.home-hero {
+  position: relative;
+  min-height: 520px;
+  display: flex;
+  align-items: center;
+  background: var(--app-navy); /* fallback */
+  overflow: hidden;
+
+  /* Put your hero image here */
+  background-image: url("/assets/images/hero-car.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.home-hero__overlay {
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+  inset: 0;
+  /* dark blue overlay like your current app */
+  background: linear-gradient(
+    180deg,
+    rgba(17, 38, 69, 0.92) 0%,
+    rgba(27, 48, 77, 0.75) 55%,
+    rgba(38, 56, 70, 0.9) 100%
+  );
+}
+
+.home-hero__content {
+  position: relative;
+  z-index: 2;
+  padding: 56px 12px 70px;
+}
+
+.home-hero__title {
+  color: #e9eef5;
+  font-weight: 300;
+  letter-spacing: 0.2px;
+  font-size: clamp(2.1rem, 3.7vw, 3.4rem);
+  margin-bottom: 10px;
+}
+
+.home-hero__subtitle {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1.05rem;
+  margin-bottom: 28px;
+}
+
+/* SEARCH BAR (single bar + dividers like base UI) */
+.hero-searchbar {
+  max-width: 1120px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 10px;
+  padding: 12px;
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.28);
+  backdrop-filter: blur(4px);
+}
+
+.hero-searchbar__form {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  flex-wrap: nowrap; /* keep button visible */
+}
+
+.hero-searchbar__item {
+  display: flex;
+  align-items: center;
+  height: 56px;
+  background: #fff;
+  border-radius: 6px;
+  padding: 0 14px;
+  flex: 1 1 0;
+  min-width: 180px;
+}
+
+.hero-searchbar__item--location {
+  flex: 1.35 1 0;
+  min-width: 240px;
+}
+
+.hero-searchbar__fa {
+  color: #6c757d;
+  font-size: 1rem;
+  margin-right: 12px;
+}
+
+.hero-searchbar__input {
+  border: 0;
+  outline: 0;
+  width: 100%;
+  font-size: 1rem;
+  color: #495057;
+  background: transparent;
+}
+
+.hero-searchbar__input::placeholder {
+  color: #9aa3ad;
+}
+
+.hero-searchbar__divider {
+  width: 1px;
+  height: 44px;
+  background: #d7dde3;
+  margin: 0 10px;
+}
+
+/* Search button */
+.hero-searchbar__btn {
+  background: var(--app-blue-2, #2f7de1) !important;
+  color: #fff !important;
+  opacity: 1 !important;
+
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 10px 18px rgba(17, 38, 69, 0.25);
+
+  height: 56px;
+  min-width: 160px;
+  flex: 0 0 160px;
+
+  border-radius: 10px;
+  font-weight: 700;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.hero-searchbar__btn i {
+  color: #fff !important;
+}
+.hero-searchbar__btn:hover {
+  filter: brightness(1.05);
+}
+
+/* Focus state: blue (match your app) */
+.hero-searchbar__item:focus-within {
+  box-shadow: 0 0 0 0.2rem rgba(78, 163, 255, 0.18);
+}
+
+/* Responsive stacking */
+@media (max-width: 991.98px) {
+  .home-hero {
+    min-height: 580px;
+  }
+
+  .hero-searchbar__form {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .hero-searchbar__divider {
+    display: none;
+  }
+
+  .hero-searchbar__item,
+  .hero-searchbar__btn {
+    flex: 1 1 100%;
+    min-width: 0;
+  }
+
+  .hero-searchbar__btn {
+    width: 100%;
+    margin-left: 0;
+  }
+}
+
+/* WHY CHOOSE */
+.why-choose {
+  background: #f4f5f7;
+}
+
+.section-title {
+  font-weight: 600;
+  color: #1f2f3c;
+}
+
+.feature {
+  padding: 22px 18px;
+}
+
+.feature-icon {
+  width: 54px;
+  height: 54px;
+  margin: 0 auto 12px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: rgba(226, 85, 67, 0.1);
+  color: var(--brand);
+  font-size: 1.4rem;
+}
+
+.feature-title {
+  font-weight: 700;
+  margin-bottom: 6px;
+  color: #1f2f3c;
+}
+
+.feature-text {
+  color: #6c757d;
+  font-size: 0.95rem;
+}
+
+/* FOOTER */
+.site-footer {
+  background-color: var(--nav-dark, #243645);
+  color: rgba(255, 255, 255, 0.75);
+  padding: 28px 0 18px;
+  font-size: 0.9rem;
+}
+
+.footer-brand {
+  font-weight: 600;
+  color: #fff;
+  font-size: 1.05rem;
+}
+
+.footer-link {
+  color: rgba(255, 255, 255, 0.75);
+  text-decoration: none;
+  margin: 0 10px;
+  font-size: 0.9rem;
+}
+
+.footer-link:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+
+.footer-social {
+  color: rgba(255, 255, 255, 0.75);
+  margin-left: 12px;
+  font-size: 1rem;
+  transition: color 0.2s ease;
+}
+
+.footer-social:hover {
+  color: var(--brand, #e25543);
+}
+
+.footer-divider {
+  border-color: rgba(255, 255, 255, 0.15);
+  margin: 18px 0 12px;
+}
+
+.footer-copy {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+/* Responsive tweaks */
+@media (max-width: 991.98px) {
+  .home-hero {
+    min-height: 560px;
+  }
+  .btn-brand {
+    width: 100%;
+  }
+}
