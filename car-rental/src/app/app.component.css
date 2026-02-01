@@ -73,3 +73,177 @@
 .navbar-toggler-icon {
   filter: invert(1);
 }
+
+/* LOGIN MODAL */
+
+:root {
+  --app-navy: #112645;
+  --app-blue: #2f7de1;
+  --app-blue-light: #4ea3ff;
+}
+
+/* Overlay */
+.auth-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  background: rgba(6, 18, 32, 0.55);
+  backdrop-filter: blur(2px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+/* Modal */
+.auth-modal {
+  width: min(640px, 96vw);
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+  overflow: hidden;
+}
+
+/* Header */
+.auth-header {
+  padding: 18px 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.auth-title {
+  margin: 0;
+  font-weight: 700;
+  color: #1f2f3c;
+}
+
+.auth-close {
+  border: 0;
+  background: transparent;
+  color: #6c757d;
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+}
+
+.auth-close:hover {
+  background: rgba(0, 0, 0, 0.05);
+  color: #1f2f3c;
+}
+
+.auth-divider {
+  margin: 0;
+  border-color: rgba(0, 0, 0, 0.08);
+}
+
+/* Body */
+.auth-body {
+  padding: 18px 22px 22px;
+}
+
+/* Inputs */
+.auth-ig-text {
+  background: #f3f5f7;
+  border-color: #e3e7ec;
+  color: #6c757d;
+}
+
+.auth-input {
+  height: 46px;
+  border-color: #e3e7ec;
+}
+
+.auth-input:focus {
+  border-color: rgba(47, 125, 225, 0.45);
+  box-shadow: 0 0 0 0.2rem rgba(47, 125, 225, 0.14);
+}
+
+/* Password eye */
+.auth-eye {
+  border: 1px solid #e3e7ec;
+  border-left: 0;
+  background: #fff;
+  color: #6c757d;
+}
+
+.auth-eye:hover {
+  background: #f8f9fa;
+}
+
+/* Login button */
+.auth-btn {
+  height: 48px;
+  font-weight: 700;
+  border-radius: 8px;
+  background: var(--app-blue);
+  border: 1px solid var(--app-blue);
+  color: #fff;
+}
+
+.auth-btn:hover {
+  filter: brightness(1.05);
+  color: #fff;
+}
+
+/* Footer */
+.auth-footer {
+  font-size: 0.95rem;
+}
+
+.auth-link {
+  color: var(--app-blue);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.auth-link:hover {
+  color: var(--app-blue-light);
+}
+
+/* Soft light-blue background for login modal */
+.auth-modal {
+  background-color: #f5f9ff; /* very subtle blue tint */
+}
+
+/* Make inner content still look white */
+.auth-body {
+  background-color: #ffffff;
+}
+
+/* Solid blue primary button (logo-matching) */
+.auth-btn {
+  background-color: #2f7de1 !important;
+  border: none !important;
+  color: #ffffff !important;
+  box-shadow: 0 6px 14px rgba(47, 125, 225, 0.35);
+}
+
+.auth-btn:hover {
+  background-color: #2568c9 !important;
+  box-shadow: 0 8px 18px rgba(47, 125, 225, 0.45);
+}
+
+/* Focused input subtle blue */
+.auth-input:focus {
+  background-color: #eef5ff;
+  border-color: #4ea3ff;
+}
+
+/* Input icon background – clean blue tint */
+.auth-ig-text {
+  background-color: #eef5ff;
+  color: #2f7de1;
+}
+
+/* Eye icon hover */
+.auth-eye:hover {
+  color: #2f7de1;
+}
+
+/* Header title color */
+.auth-title {
+  color: #1b304d;
+}

@@ -39,7 +39,7 @@
       </ul>
 
       <!-- Action -->
-      <button class="btn btn-outline-light btn-pill">
+      <button class="btn btn-outline-light btn-pill" (click)="openAuthModal()">
         <i class="fa-regular fa-user me-2"></i>
         Login / Register
       </button>
@@ -48,3 +48,163 @@
 </nav>
 
 <router-outlet />
+
+<!-- LOGIN MODAL -->
+
+<div
+  class="auth-backdrop"
+  div
+  #authModal
+  class="modal fade"
+  tabindex="-1"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content auth-modal">
+      @if (authMode() === "login") {
+        <!-- Header -->
+        <div class="auth-header">
+          <h4 class="auth-title">Login</h4>
+
+          <!-- NO TS needed to close -->
+          <button
+            type="button"
+            class="auth-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          >
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+
+        <hr class="auth-divider" />
+
+        <!-- Body -->
+        <div class="auth-body">
+          <!-- Email -->
+          <div class="mb-3">
+            <label class="form-label">Email</label>
+            <div class="input-group">
+              <span class="input-group-text auth-ig-text">
+                <i class="fa-regular fa-envelope"></i>
+              </span>
+              <input
+                type="email"
+                class="form-control auth-input"
+                placeholder="Enter email"
+              />
+            </div>
+          </div>
+
+          <!-- Password -->
+          <div class="mb-3">
+            <label class="form-label">Password</label>
+            <div class="input-group">
+              <span class="input-group-text auth-ig-text">
+                <i class="fa-solid fa-lock"></i>
+              </span>
+              <input
+                type="password"
+                class="form-control auth-input"
+                placeholder="Enter password"
+              />
+              <button type="button" class="btn auth-eye">
+                <i class="fa-regular fa-eye"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Login Button -->
+          <button type="button" class="btn auth-btn w-100">
+            <i class="fa-solid fa-right-to-bracket me-2"></i>
+            Login
+          </button>
+
+          <!-- Footer -->
+          <div class="auth-footer text-center mt-3">
+            <span class="text-muted">Don't have an account?</span>
+            <a class="auth-link ms-1" role="button" (click)="openRegister()">
+              Register here
+            </a>
+          </div>
+        </div>
+      } @else {
+        <!-- REGISTER MODAL -->
+        <!-- Header -->
+        <div class="auth-header">
+          <h4 class="auth-title">Register</h4>
+          <button type="button" class="auth-close">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+
+        <hr class="auth-divider" />
+
+        <!-- Body -->
+        <div class="auth-body">
+          <!-- Name -->
+          <div class="mb-3">
+            <label class="form-label">Name</label>
+            <div class="input-group">
+              <span class="input-group-text auth-ig-text">
+                <i class="fa-regular fa-user"></i>
+              </span>
+              <input
+                type="text"
+                class="form-control auth-input"
+                placeholder="Enter full name"
+              />
+            </div>
+          </div>
+
+          <!-- Email -->
+          <div class="mb-3">
+            <label class="form-label">Email</label>
+            <div class="input-group">
+              <span class="input-group-text auth-ig-text">
+                <i class="fa-regular fa-envelope"></i>
+              </span>
+              <input
+                type="email"
+                class="form-control auth-input"
+                placeholder="Enter email"
+              />
+            </div>
+          </div>
+
+          <!-- Password -->
+          <div class="mb-4">
+            <label class="form-label">Password</label>
+            <div class="input-group">
+              <span class="input-group-text auth-ig-text">
+                <i class="fa-solid fa-lock"></i>
+              </span>
+              <input
+                type="password"
+                class="form-control auth-input"
+                placeholder="Create password"
+              />
+              <button type="button" class="btn auth-eye">
+                <i class="fa-regular fa-eye"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Register Button -->
+          <button type="button" class="btn auth-btn w-100">
+            <i class="fa-solid fa-user-plus me-2"></i>
+            Register
+          </button>
+
+          <!-- Footer -->
+          <div class="auth-footer text-center mt-3">
+            <span class="text-muted">Already have an account?</span>
+            <a class="auth-link ms-1" role="button" (click)="openLogin()">
+              Login here
+            </a>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</div>
