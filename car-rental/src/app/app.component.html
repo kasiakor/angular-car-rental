@@ -133,7 +133,12 @@
         <!-- Header -->
         <div class="auth-header">
           <h4 class="auth-title">Register</h4>
-          <button type="button" class="auth-close">
+          <button
+            type="button"
+            class="auth-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          >
             <i class="fa-solid fa-xmark"></i>
           </button>
         </div>
@@ -153,6 +158,8 @@
                 type="text"
                 class="form-control auth-input"
                 placeholder="Enter full name"
+                name="name"
+                [(ngModel)]="user.name"
               />
             </div>
           </div>
@@ -168,6 +175,27 @@
                 type="email"
                 class="form-control auth-input"
                 placeholder="Enter email"
+                name="emailId"
+                [(ngModel)]="user.emailId"
+              />
+            </div>
+          </div>
+          <!-- Mobile -->
+          <div class="mb-3">
+            <label class="form-label">Mobile Number</label>
+
+            <div class="input-group">
+              <span class="input-group-text auth-ig-text">
+                <i class="fa-solid fa-mobile-screen"></i>
+              </span>
+
+              <input
+                type="tel"
+                class="form-control auth-input"
+                placeholder="Enter mobile number"
+                name="mobileNo"
+                [(ngModel)]="user.mobileNo"
+                required
               />
             </div>
           </div>
@@ -177,12 +205,14 @@
             <label class="form-label">Password</label>
             <div class="input-group">
               <span class="input-group-text auth-ig-text">
-                <i class="fa-solid fa-lock"></i>
+                <i class="fa-solid fa-mobile-screen"></i>
               </span>
               <input
                 type="password"
                 class="form-control auth-input"
                 placeholder="Create password"
+                name="password"
+                [(ngModel)]="user.password"
               />
               <button type="button" class="btn auth-eye">
                 <i class="fa-regular fa-eye"></i>
@@ -191,7 +221,11 @@
           </div>
 
           <!-- Register Button -->
-          <button type="button" class="btn auth-btn w-100">
+          <button
+            type="button"
+            class="btn auth-btn w-100"
+            (click)="onRegister()"
+          >
             <i class="fa-solid fa-user-plus me-2"></i>
             Register
           </button>
