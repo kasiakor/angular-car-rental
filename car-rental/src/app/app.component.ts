@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import {
   AfterViewInit,
@@ -19,7 +20,7 @@ declare const bootstrap: any;
 
 @Component({
   selector: 'app-root',
-  imports: [FormsModule, RouterOutlet],
+  imports: [FormsModule, RouterOutlet, CommonModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
@@ -37,6 +38,8 @@ export class AppComponent implements AfterViewInit {
     password: '',
   };
 
+  showPassword = false;
+
   authMode = signal<'login' | 'register' | null>(null);
 
   @ViewChild('authModal') modalEl!: ElementRef<HTMLElement>;
@@ -52,6 +55,10 @@ export class AppComponent implements AfterViewInit {
   openAuthModal(): void {
     this.authMode.set('login');
     this.modal.show();
+  }
+
+  togglePassword() {
+    this.showPassword = !this.showPassword;
   }
 
   openLogin() {

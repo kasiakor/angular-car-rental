@@ -104,12 +104,20 @@
                 <i class="fa-solid fa-lock"></i>
               </span>
               <input
+                [type]="showPassword ? 'text' : 'password'"
                 type="password"
                 class="form-control auth-input"
                 placeholder="Enter password"
               />
-              <button type="button" class="btn auth-eye">
-                <i class="fa-regular fa-eye"></i>
+              <button
+                type="button"
+                class="btn auth-eye"
+                (click)="togglePassword()"
+              >
+                <i
+                  class="fa-regular"
+                  [ngClass]="showPassword ? 'fa-eye-slash' : 'fa-eye'"
+                ></i>
               </button>
             </div>
           </div>
@@ -208,14 +216,22 @@
                 <i class="fa-solid fa-mobile-screen"></i>
               </span>
               <input
-                type="password"
+                [type]="showPassword ? 'text' : 'password'"
                 class="form-control auth-input"
                 placeholder="Create password"
                 name="password"
                 [(ngModel)]="user.password"
               />
-              <button type="button" class="btn auth-eye">
-                <i class="fa-regular fa-eye"></i>
+
+              <button
+                type="button"
+                class="btn auth-eye"
+                (click)="togglePassword()"
+              >
+                <i
+                  class="fa-regular"
+                  [ngClass]="showPassword ? 'fa-eye-slash' : 'fa-eye'"
+                ></i>
               </button>
             </div>
           </div>
