@@ -1,10 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import {
-  IUserRegister,
-  IUserRegisterResponse,
-} from '../interfaces/user.interface';
+import { IUser, IUserResponse } from '../interfaces/user.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -12,10 +9,11 @@ import {
 export class UserService {
   constructor(private http: HttpClient) {}
 
-  addNewUser(payload: IUserRegister): Observable<IUserRegisterResponse> {
-    return this.http.post<IUserRegisterResponse>(
-      'https://freeapi.miniprojectideas.com/api/ZoomCar/AddNewUser',
-      payload,
-    );
+  addNewUser(payload: IUser): Observable<IUserResponse> {
+    return this.http.post<IUserResponse>('/api/ZoomCar/AddNewUser', payload);
+  }
+
+  loginUser(payload: IUser): Observable<IUserResponse> {
+    return this.http.post<IUserResponse>('/api/ZoomCar/Login', payload);
   }
 }

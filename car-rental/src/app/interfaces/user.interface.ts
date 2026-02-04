@@ -1,4 +1,4 @@
-export interface IUserRegister {
+export interface IUser {
   userId?: number;
   name: string;
   userRole: string;
@@ -8,8 +8,8 @@ export interface IUserRegister {
   createdOn?: string;
 }
 
-export interface IUserRegisterResponse {
-  Message: string;
-  Result: boolean;
-  Data: string;
+export interface IUserResponse {
+  message: string;
+  result: boolean;
+  data: string;
 }

@@ -92,6 +92,8 @@
                 type="email"
                 class="form-control auth-input"
                 placeholder="Enter email"
+                name="emailId"
+                [(ngModel)]="user.emailId"
               />
             </div>
           </div>
@@ -108,6 +110,8 @@
                 type="password"
                 class="form-control auth-input"
                 placeholder="Enter password"
+                name="password"
+                [(ngModel)]="user.password"
               />
               <button
                 type="button"
@@ -123,7 +127,7 @@
           </div>
 
           <!-- Login Button -->
-          <button type="button" class="btn auth-btn w-100">
+          <button type="button" class="btn auth-btn w-100" (click)="onLogin()">
             <i class="fa-solid fa-right-to-bracket me-2"></i>
             Login
           </button>

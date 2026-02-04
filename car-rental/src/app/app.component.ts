@@ -10,10 +10,7 @@ import {
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterOutlet } from '@angular/router';
-import {
-  IUserRegister,
-  IUserRegisterResponse,
-} from './interfaces/user.interface';
+import { IUser, IUserResponse } from './interfaces/user.interface';
 import { UserService } from './services/user.service';
 
 declare const bootstrap: any;
@@ -30,7 +27,7 @@ export class AppComponent implements AfterViewInit {
 
   title = 'car-rental';
 
-  user: IUserRegister = {
+  user: IUser = {
     name: '',
     userRole: 'user',
     emailId: '',
@@ -71,9 +68,9 @@ export class AppComponent implements AfterViewInit {
 
   onRegister() {
     // payload to backend (exclude backend-generated fields - userId)
-    const payload: Omit<IUserRegister, 'userId'> = {
+    const payload: Omit<IUser, 'userId'> = {
       name: this.user.name,
-      userRole: this.user.userRole,
+      userRole: 'CarOwner',
       emailId: this.user.emailId,
       mobileNo: this.user.mobileNo,
       password: this.user.password,
@@ -81,11 +78,32 @@ export class AppComponent implements AfterViewInit {
     };
     console.log('payload', payload);
     this.userService.addNewUser(payload).subscribe({
-      next: (res: IUserRegisterResponse) => {
+      next: (res: IUserResponse) => {
         console.log('User created:', res);
       },
       error: (err) => {
         console.error('Create user failed:', err);
+      },
+    });
+  }
+
+  onLogin() {
+    const loginObj: Omit<IUser, 'userId'> = {
+      name: 'asdas',
+      userRole: 'CarOwner',
+      emailId: this.user.emailId,
+      mobileNo: '1122331122',
+      password: this.user.password,
+      createdOn: new Date().toISOString(),
+    };
+    console.log('loginObj', loginObj);
+    this.userService.loginUser(loginObj).subscribe({
+      next: (res: IUserResponse) => {
+        localStorage.setItem('userData', JSON.stringify(res.data));
+        console.log('User login succesful :', res);
+      },
+      error: (err) => {
+        console.error('Login user failed:', err);
       },
     });
   }
