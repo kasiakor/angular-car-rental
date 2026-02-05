@@ -247,3 +247,8 @@
 .auth-title {
   color: #1b304d;
 }
+
+.user-email {
+  color: white;
+  padding: 0 6px;
+}

@@ -5,11 +5,12 @@ import {
   Component,
   ElementRef,
   inject,
+  OnInit,
   signal,
   ViewChild,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 import { IUser, IUserResponse } from './interfaces/user.interface';
 import { UserService } from './services/user.service';
 
@@ -21,9 +22,10 @@ declare const bootstrap: any;
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
-export class AppComponent implements AfterViewInit {
+export class AppComponent implements OnInit, AfterViewInit {
   http = inject(HttpClient);
   userService = inject(UserService);
+  router = inject(Router);
 
   title = 'car-rental';
 
@@ -37,10 +39,26 @@ export class AppComponent implements AfterViewInit {
 
   showPassword = false;
 
+  loggedUserData: any;
+  isLoggedIn: boolean = false;
+
   authMode = signal<'login' | 'register' | null>(null);
 
   @ViewChild('authModal') modalEl!: ElementRef<HTMLElement>;
   private modal!: any;
+
+  ngOnInit(): void {
+    const userData = localStorage.getItem('userData');
+
+    if (userData) {
+      this.loggedUserData = JSON.parse(userData);
+      this.isLoggedIn = true;
+    } else {
+      this.isLoggedIn = false;
+    }
+
+    console.log('loggedUserData', this.loggedUserData);
+  }
 
   ngAfterViewInit(): void {
     this.modal = new bootstrap.Modal(this.modalEl.nativeElement, {
@@ -80,6 +98,11 @@ export class AppComponent implements AfterViewInit {
     this.userService.addNewUser(payload).subscribe({
       next: (res: IUserResponse) => {
         console.log('User created:', res);
+        alert('User created. Log in now');
+        // close modal FIRST
+        this.modal.hide();
+        // navigate to home
+        this.router.navigate(['/']);
       },
       error: (err) => {
         console.error('Create user failed:', err);
@@ -99,12 +122,25 @@ export class AppComponent implements AfterViewInit {
     console.log('loginObj', loginObj);
     this.userService.loginUser(loginObj).subscribe({
       next: (res: IUserResponse) => {
+        this.loggedUserData = res.data;
         localStorage.setItem('userData', JSON.stringify(res.data));
         console.log('User login succesful :', res);
+
+        // close modal FIRST
+        this.modal.hide();
+        // update state (if you have AuthService)
+        this.isLoggedIn = true;
+        // navigate to home
+        this.router.navigate(['/']);
       },
       error: (err) => {
         console.error('Login user failed:', err);
       },
     });
+  }
+  onLogout(): void {
+    alert('logout');
+    localStorage.removeItem('userData');
+    this.isLoggedIn = false;
   }
 }

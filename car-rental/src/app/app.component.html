@@ -39,10 +39,25 @@
       </ul>
 
       <!-- Action -->
-      <button class="btn btn-outline-light btn-pill" (click)="openAuthModal()">
-        <i class="fa-regular fa-user me-2"></i>
-        Login / Register
-      </button>
+      @if (!isLoggedIn) {
+        <button
+          class="btn btn-outline-light rounded-pill px-4"
+          (click)="openAuthModal()"
+        >
+          <i class="fa-regular fa-user me-2"></i>
+          Login / Register
+        </button>
+      } @else {
+        <span class="user-email">{{ loggedUserData.emailId }}</span>
+        <button
+          class="btn btn-outline-light rounded-pill px-4"
+          (click)="onLogout()"
+        >
+          <i class="fa-solid fa-right-from-bracket me-2"></i>
+
+          Logout
+        </button>
+      }
     </div>
   </div>
 </nav>
