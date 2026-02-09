@@ -12,39 +12,23 @@
     <div class="hero-searchbar mx-auto">
       <form class="hero-searchbar__form" (submit)="$event.preventDefault()">
         <!-- Location -->
-        <div class="hero-searchbar__item hero-searchbar__item--location">
-          <i class="fa-solid fa-location-dot hero-searchbar__fa"></i>
-          <input
-            class="hero-searchbar__input"
-            type="text"
-            placeholder="Location"
-          />
-        </div>
+        <select
+          class="hero-searchbar__input"
+          [(ngModel)]="selectedLocationId"
+          (change)="onLocationChange()"
+          name="selectedLocationId"
+        >
+          <option value="" disabled selected>Select location</option>
 
-        <div class="hero-searchbar__divider"></div>
-
-        <!-- Pickup date (1 icon only) -->
-        <div class="hero-searchbar__item">
-          <input
-            class="hero-searchbar__input"
-            type="date"
-            placeholder="dd-mm-yyyy"
-          />
-        </div>
-
-        <div class="hero-searchbar__divider"></div>
-
-        <!-- Return date (1 icon only) -->
-        <div class="hero-searchbar__item">
-          <input
-            class="hero-searchbar__input"
-            type="date"
-            placeholder="dd-mm-yyyy"
-          />
-        </div>
+          @for (location of locations; track location.locationId) {
+            <option [value]="location.locationId">
+              {{ location.title }}
+            </option>
+          }
+        </select>
 
         <!-- Blue Search button (matches your app) -->
-        <button type="submit" class="hero-searchbar__btn">
+        <button type="submit" class="hero-searchbar__btn" (click)="onSearch()">
           <i class="fa-solid fa-magnifying-glass me-2"></i>
           Search
         </button>

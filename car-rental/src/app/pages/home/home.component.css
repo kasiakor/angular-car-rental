@@ -105,6 +105,7 @@
   font-size: 1rem;
   color: #495057;
   background: transparent;
+  margin-right: 30px;
 }
 
 .hero-searchbar__input::placeholder {

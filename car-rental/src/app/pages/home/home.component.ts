@@ -1,11 +1,45 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
+import { ILocation } from '../../interfaces/location.interface';
+import { LocationService } from '../../services/location.service';
 
 @Component({
   selector: 'app-home',
-  imports: [],
+  imports: [FormsModule],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.css'
+  styleUrl: './home.component.css',
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
+  locationService = inject(LocationService);
+  router = inject(Router);
 
+  locations: ILocation[] = [];
+  selectedLocationId!: number;
+
+  ngOnInit(): void {
+    this.loadLocations();
+  }
+
+  loadLocations() {
+    this.locationService.getAllLocations().subscribe({
+      next: (res) => {
+        this.locations = res.data;
+        console.log('getAllLocations', res.data); // ILocation[]
+      },
+      error: (err) => console.error(err),
+    });
+  }
+
+  onLocationChange() {
+    console.log('Selected locationId:', this.selectedLocationId);
+  }
+
+  onSearch() {
+    if (!this.selectedLocationId) {
+      alert('select the location');
+      return;
+    }
+    this.router.navigate(['/search', this.selectedLocationId]);
+  }
 }
