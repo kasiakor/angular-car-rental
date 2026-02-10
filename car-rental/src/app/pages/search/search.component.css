@@ -1,0 +1,79 @@
+/* Card container */
+.car-card {
+  border-radius: 14px;
+  overflow: hidden;
+  padding-bottom: 0.5rem;
+  background: #ffffff;
+  border-radius: 16px;
+  border: 1px solid #eef1f5;
+  box-shadow:
+    0 4px 10px rgba(0, 0, 0, 0.04),
+    0 10px 24px rgba(0, 0, 0, 0.06);
+  transition:
+    box-shadow 0.25s ease,
+    transform 0.25s ease;
+}
+
+/* Image */
+.car-card__img {
+  height: 180px;
+  object-fit: cover;
+  border-bottom: 1px solid #f0f0f0;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+}
+
+/* Card body spacing */
+.car-card .card-body {
+  padding: 1.25rem 1.25rem 1.4rem;
+}
+
+/* Title */
+.car-card h6 {
+  margin-bottom: 0.25rem;
+}
+
+/* Brand text */
+.car-card p {
+  margin-bottom: 0.5rem;
+}
+
+/* Button – brand blue */
+.car-card__btn {
+  background-color: #2f80ed; /* CarRent blue */
+  border: none;
+  border-radius: 10px;
+  padding: 0.6rem;
+  font-weight: 500;
+}
+
+/* Button hover */
+.car-card__btn:hover {
+  background-color: #2568c9;
+}
+
+.car-card {
+  background: #ffffff;
+  border-radius: 16px;
+  border: 1px solid #eef1f5;
+  box-shadow:
+    0 4px 10px rgba(0, 0, 0, 0.04),
+    0 10px 24px rgba(0, 0, 0, 0.06);
+  transition:
+    box-shadow 0.25s ease,
+    transform 0.25s ease;
+}
+
+/* Image rounding */
+.car-card__img {
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+}
+
+/* Hover effect – very subtle */
+.car-card:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    0 8px 20px rgba(0, 0, 0, 0.06),
+    0 16px 40px rgba(0, 0, 0, 0.08);
+}
