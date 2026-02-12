@@ -10,12 +10,12 @@ import { LocationService } from '../../services/location.service';
   styleUrl: './search.component.css',
 })
 export class SearchComponent implements OnInit {
-  constructor(private activatedRoute: ActivatedRoute) {}
   locationId: number = 0;
   carsByLocation: ICar[] = [];
   isLoading = true;
 
-  locationService = inject(LocationService);
+  private locationService = inject(LocationService);
+  private activatedRoute = inject(ActivatedRoute);
 
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe((params) => {

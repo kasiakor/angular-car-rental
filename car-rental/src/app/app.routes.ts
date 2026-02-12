@@ -9,7 +9,7 @@ export const routes: Routes = [
 
   { path: 'home', component: HomeComponent },
   { path: 'search/:locationId', component: SearchComponent },
-  { path: 'booking', component: BookingComponent },
+  { path: 'booking/:carId', component: BookingComponent },
   { path: 'my-booking', component: MyBookingComponent },
 
   // optional: catch-all route

@@ -1,1 +1,137 @@
-<p>booking works!</p>
+<div class="container py-4">
+  @if (selectedCar; as car) {
+    <div class="row g-4 align-items-start">
+      <!-- LEFT: Image area (like screenshot "Car Image") -->
+      <div class="col-12 col-lg-6">
+        <div class="image-shell">
+          @if (car.imageUrl) {
+            <img [src]="car.imageUrl" [alt]="car.brand" class="car-image" />
+          } @else {
+            <div
+              class="image-fallback d-flex align-items-center justify-content-center"
+            >
+              <span class="text-muted">No Image Available</span>
+            </div>
+          }
+        </div>
+      </div>
+
+      <!-- RIGHT: Details + Booking -->
+      <div class="col-12 col-lg-6">
+        <!-- Top: Name + badge + price -->
+        <div class="text-center text-lg-start">
+          <h2 class="mb-1 fw-bold title-blue">
+            {{ car.brand }}
+            <span class="badge ms-2 plate-badge">{{ car.vehicleNo }}</span>
+          </h2>
+          <div class="price-muted mb-4">
+            ${{ car.pricingDescription }}
+            <span class="text-muted">Per Day</span>
+          </div>
+        </div>
+
+        <!-- Accessories block -->
+        <div class="mb-4">
+          <h5 class="fw-bold title-blue mb-3">Accessories</h5>
+
+          <div class="accessories-list">
+            @for (a of car.zoomCarAccessoriess; track a.accessoriesId) {
+              <div class="d-flex align-items-center gap-2 mb-2">
+                <span class="acc-check">✓</span>
+                <span class="text-muted">{{ a.accessoriesTitle }}</span>
+              </div>
+            }
+          </div>
+
+          <div class="d-flex align-items-center gap-2 text-muted small mt-3">
+            <span class="reg-icon">📅</span>
+            <span
+              >Registered on: {{ car.registeredOn | date: "M/d/yyyy" }}</span
+            >
+          </div>
+        </div>
+
+        <!-- Booking Form Card -->
+        <div class="card shadow-sm border-0 booking-card">
+          <div class="card-body p-4">
+            <h4 class="fw-bold mb-3 title-blue">Book This Car</h4>
+
+            <form>
+              <div class="mb-3">
+                <label class="form-label fw-semibold">Travel Date</label>
+                <input
+                  type="date"
+                  class="form-control ui-input"
+                  formControlName="travelDate"
+                />
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label fw-semibold">Start Time</label>
+                <input
+                  type="time"
+                  class="form-control ui-input"
+                  formControlName="startTime"
+                />
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label fw-semibold">From Location</label>
+                <select
+                  class="form-select ui-input"
+                  formControlName="fromLocation"
+                >
+                  <option value="" disabled>Select pickup location</option>
+                </select>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label fw-semibold">To Location</label>
+                <select
+                  class="form-select ui-input"
+                  formControlName="toLocation"
+                >
+                  <option value="" disabled>Select drop location</option>
+                </select>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label fw-semibold">Pickup Address</label>
+                <textarea
+                  rows="3"
+                  class="form-control ui-input"
+                  placeholder="Enter detailed pickup address"
+                  formControlName="pickupAddress"
+                ></textarea>
+              </div>
+
+              <div class="mb-2">
+                <label class="form-label fw-semibold"
+                  >Alternate Contact Number</label
+                >
+                <input
+                  type="tel"
+                  class="form-control ui-input"
+                  placeholder="Enter alternate contact number"
+                  formControlName="altPhone"
+                />
+              </div>
+
+              <button
+                type="submit"
+                class="btn btn-primary w-100 mt-4 py-3 fw-bold book-btn"
+              >
+                Book Now · ${{ car.pricing }} Per Day
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  } @else {
+    <div class="text-center py-5">
+      <div class="spinner-border" role="status"></div>
+      <div class="mt-3 text-muted">Loading car details...</div>
+    </div>
+  }
+</div>

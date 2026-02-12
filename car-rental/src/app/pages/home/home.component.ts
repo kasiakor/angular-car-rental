@@ -11,11 +11,11 @@ import { LocationService } from '../../services/location.service';
   styleUrl: './home.component.css',
 })
 export class HomeComponent implements OnInit {
-  locationService = inject(LocationService);
-  router = inject(Router);
-
   locations: ILocation[] = [];
   selectedLocationId!: number;
+
+  private locationService = inject(LocationService);
+  private router = inject(Router);
 
   ngOnInit(): void {
     this.loadLocations();
