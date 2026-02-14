@@ -56,7 +56,7 @@
           <div class="card-body p-4">
             <h4 class="fw-bold mb-3 title-blue">Book This Car</h4>
 
-            <form>
+            <form [formGroup]="bookingForm">
               <div class="mb-3">
                 <label class="form-label fw-semibold">Travel Date</label>
                 <input
@@ -79,9 +79,16 @@
                 <label class="form-label fw-semibold">From Location</label>
                 <select
                   class="form-select ui-input"
-                  formControlName="fromLocation"
+                  formControlName="fromLocationId"
                 >
                   <option value="" disabled>Select pickup location</option>
+                  @if (locations$ | async; as locations) {
+                    @for (location of locations; track location.locationId) {
+                      <option [value]="selectedFromLocationId">
+                        {{ location.title }}
+                      </option>
+                    }
+                  }
                 </select>
               </div>
 
@@ -89,9 +96,16 @@
                 <label class="form-label fw-semibold">To Location</label>
                 <select
                   class="form-select ui-input"
-                  formControlName="toLocation"
+                  formControlName="toLocationId"
                 >
                   <option value="" disabled>Select drop location</option>
+                  @if (locations$ | async; as locations) {
+                    @for (location of locations; track location.locationId) {
+                      <option [value]="selectedToLocationId">
+                        {{ location.title }}
+                      </option>
+                    }
+                  }
                 </select>
               </div>
 
@@ -113,13 +127,14 @@
                   type="tel"
                   class="form-control ui-input"
                   placeholder="Enter alternate contact number"
-                  formControlName="altPhone"
+                  formControlName="alternateContactNo"
                 />
               </div>
 
               <button
-                type="submit"
+                type="button"
                 class="btn btn-primary w-100 mt-4 py-3 fw-bold book-btn"
+                (click)="onBook()"
               >
                 Book Now · ${{ car.pricing }} Per Day
               </button>
