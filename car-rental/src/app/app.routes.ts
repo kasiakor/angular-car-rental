@@ -10,7 +10,7 @@ export const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'search/:locationId', component: SearchComponent },
   { path: 'booking/:carId', component: BookingComponent },
-  { path: 'my-booking', component: MyBookingComponent },
+  { path: 'my-bookings', component: MyBookingComponent },
 
   // optional: catch-all route
   { path: '**', redirectTo: 'home' },

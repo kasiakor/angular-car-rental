@@ -17,3 +17,26 @@ export interface IBookingNewResponse {
   result: boolean;
   data: null;
 }
+export interface IBookingByCustomerId {
+  brand: string;
+  bookingNo: string;
+  travelDate: string;
+  departureTime: string;
+  carId: number;
+  imageUrl: string;
+  locationId: number;
+  name: string;
+  carBrand: string;
+  pricingDescription: string;
+  locationTitle: string;
+  carOwnerName: string;
+  carOwnermobileNo: string;
+  bookingId: number;
+  isComplete: boolean;
+}
+
+export interface IBookingByCustomerIdResponse {
+  message: string;
+  result: boolean;
+  data: IBookingByCustomerId[];
+}

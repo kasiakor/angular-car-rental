@@ -84,7 +84,7 @@
                   <option value="" disabled>Select pickup location</option>
                   @if (locations$ | async; as locations) {
                     @for (location of locations; track location.locationId) {
-                      <option [value]="selectedFromLocationId">
+                      <option [value]="location.locationId">
                         {{ location.title }}
                       </option>
                     }
@@ -101,7 +101,7 @@
                   <option value="" disabled>Select drop location</option>
                   @if (locations$ | async; as locations) {
                     @for (location of locations; track location.locationId) {
-                      <option [value]="selectedToLocationId">
+                      <option [value]="location.locationId">
                         {{ location.title }}
                       </option>
                     }

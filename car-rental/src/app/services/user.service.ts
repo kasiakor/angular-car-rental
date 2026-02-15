@@ -16,4 +16,9 @@ export class UserService {
   loginUser(payload: IUser): Observable<IUserResponse> {
     return this.http.post<IUserResponse>('/api/ZoomCar/Login', payload);
   }
+
+  getCustomerIdFromLocalStorage(): number {
+    const user = JSON.parse(localStorage.getItem('userData') || '{}');
+    return Number(user.userId) || 0;
+  }
 }

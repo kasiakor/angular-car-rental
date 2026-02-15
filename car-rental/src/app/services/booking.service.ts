@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import {
+  IBookingByCustomerIdResponse,
   IBookingNew,
   IBookingNewResponse,
 } from '../interfaces/booking.interface';
@@ -16,6 +17,13 @@ export class BookingService {
     return this.http.post<IBookingNewResponse>(
       '/api/ZoomCar/createNewBooking',
       bookingData,
+    );
+  }
+  getBookingsByCustomerId(
+    customerId: number,
+  ): Observable<IBookingByCustomerIdResponse> {
+    return this.http.get<IBookingByCustomerIdResponse>(
+      '/api/ZoomCar/GetAllBookingsByCustomerId?customerid=' + customerId,
     );
   }
 }

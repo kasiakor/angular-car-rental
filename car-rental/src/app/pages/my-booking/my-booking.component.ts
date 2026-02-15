@@ -1,11 +1,32 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
+import { BookingService } from '../../services/booking.service';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-my-booking',
   imports: [],
   templateUrl: './my-booking.component.html',
-  styleUrl: './my-booking.component.css'
+  styleUrl: './my-booking.component.css',
 })
-export class MyBookingComponent {
+export class MyBookingComponent implements OnInit {
+  private bookingService = inject(BookingService);
+  private userService = inject(UserService);
 
+  customerId!: number;
+
+  ngOnInit(): void {
+    this.customerId = this.userService.getCustomerIdFromLocalStorage();
+    this.loadBookingsByCustomerId();
+  }
+
+  loadBookingsByCustomerId() {
+    this.bookingService.getBookingsByCustomerId(this.customerId).subscribe({
+      next: (res) => {
+        console.log('Bookings by Customer ID:', res.data);
+      },
+      error: (err) => {
+        console.error('Error fetching bookings:', err);
+      },
+    });
+  }
 }

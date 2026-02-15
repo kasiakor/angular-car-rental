@@ -12,6 +12,7 @@ import { ICarById } from '../../interfaces/car.interface';
 import { BookingService } from '../../services/booking.service';
 import { CarService } from '../../services/car.service';
 import { LocationService } from '../../services/location.service';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-booking',
@@ -22,22 +23,16 @@ import { LocationService } from '../../services/location.service';
 export class BookingComponent implements OnInit {
   carId!: number;
   selectedCar?: ICarById;
-  selectedFromLocationId: number = 0;
-  selectedToLocationId: number = 0;
 
   private activatedRoute = inject(ActivatedRoute);
   private carService = inject(CarService);
   private locationService = inject(LocationService);
   private bookingService = inject(BookingService);
+  private userService = inject(UserService);
 
   private getCarIdFromRoute() {
     const id = this.activatedRoute.snapshot.paramMap.get('carId');
     return id ? Number(id) : null;
-  }
-
-  private getCustomerIdFromLocalStorage(): number {
-    const user = JSON.parse(localStorage.getItem('user') || '{}');
-    return Number(user.userId) || 0;
   }
 
   locations$ = this.locationService
@@ -50,8 +45,8 @@ export class BookingComponent implements OnInit {
     carId: new FormControl(0),
     invoiceNo: new FormControl(''),
     isComplete: new FormControl(false),
-    fromLocationId: new FormControl(null, Validators.required),
-    toLocationId: new FormControl(null, Validators.required),
+    fromLocationId: new FormControl(0, Validators.required),
+    toLocationId: new FormControl(0, Validators.required),
     travelDate: new FormControl('', Validators.required),
     startTime: new FormControl('', Validators.required),
     pickupAddress: new FormControl('', Validators.required),
@@ -68,7 +63,7 @@ export class BookingComponent implements OnInit {
     this.loadCarById();
     console.log('locations$', this.locations$);
 
-    const customerId = this.getCustomerIdFromLocalStorage();
+    const customerId = this.userService.getCustomerIdFromLocalStorage();
     const carId = this.getCarIdFromRoute();
 
     this.bookingForm.patchValue({
