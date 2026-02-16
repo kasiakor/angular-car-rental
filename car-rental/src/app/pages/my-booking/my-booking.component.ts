@@ -1,4 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
+import { IBookingByCustomerId } from '../../interfaces/booking.interface';
 import { BookingService } from '../../services/booking.service';
 import { UserService } from '../../services/user.service';
 
@@ -13,6 +14,7 @@ export class MyBookingComponent implements OnInit {
   private userService = inject(UserService);
 
   customerId!: number;
+  myBookingList: IBookingByCustomerId[] = [];
 
   ngOnInit(): void {
     this.customerId = this.userService.getCustomerIdFromLocalStorage();
@@ -22,6 +24,7 @@ export class MyBookingComponent implements OnInit {
   loadBookingsByCustomerId() {
     this.bookingService.getBookingsByCustomerId(this.customerId).subscribe({
       next: (res) => {
+        this.myBookingList = res.data;
         console.log('Bookings by Customer ID:', res.data);
       },
       error: (err) => {

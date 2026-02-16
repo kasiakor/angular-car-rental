@@ -1,1 +1,54 @@
-<p>my-booking works!</p>
+<div class="container py-4">
+  <h2 class="page-title mb-4">My Bookings</h2>
+  @for (item of myBookingList; track $index) {
+    <div class="card booking-card shadow-sm mb-4">
+      <!-- Car Image -->
+      <img
+        [src]="item.imageUrl"
+        class="card-img-top booking-img"
+        alt="Car Image"
+      />
+
+      <div class="card-body">
+        <!-- Title + Status -->
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h4 class="booking-title mb-0">{{ item.brand }} {{ item.name }}</h4>
+
+          @if (item.isComplete) {
+            <span class="badge bg-success">Completed</span>
+          } @else {
+            <span class="badge bg-warning">Active</span>
+          }
+        </div>
+
+        <!-- Travel Date -->
+        <p class="mb-2">
+          <span class="label">Travel Date:</span>
+          {{ item.travelDate }}
+        </p>
+
+        <!-- Location -->
+        <p class="mb-2">
+          <span class="label">Location:</span>
+          {{ item.locationTitle }}
+        </p>
+
+        <!-- Price -->
+        <p class="mb-3">
+          <span class="label">Price:</span>
+          {{ item.pricingDescription }}
+        </p>
+
+        <hr />
+
+        <!-- Contact -->
+        <h6 class="contact-title">Contact Details</h6>
+
+        <p class="mb-0">
+          <span class="label">Car Owner:</span>
+          {{ item.carOwnerName }} {{ item.carOwnermobileNo }}
+        </p>
+      </div>
+    </div>
+  }
+</div>

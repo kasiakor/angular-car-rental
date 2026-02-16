@@ -6,7 +6,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { map } from 'rxjs';
 import { ICarById } from '../../interfaces/car.interface';
 import { BookingService } from '../../services/booking.service';
@@ -29,6 +29,7 @@ export class BookingComponent implements OnInit {
   private locationService = inject(LocationService);
   private bookingService = inject(BookingService);
   private userService = inject(UserService);
+  private router = inject(Router);
 
   private getCarIdFromRoute() {
     const id = this.activatedRoute.snapshot.paramMap.get('carId');
@@ -91,10 +92,19 @@ export class BookingComponent implements OnInit {
 
     this.bookingService.createNewBooking(bookingData).subscribe({
       next: (res) => {
-        console.log('Booking success:', res);
+        if (res?.result === true) {
+          console.log('Booking success:', res);
+          this.router.navigate(['/my-bookings']);
+          return;
+        }
+
+        // Backend returned a failure even though HTTP succeeded
+        console.error('Booking failed:', res);
+        alert(res?.message || 'Booking failed. Please try again.');
       },
       error: (err) => {
-        console.error('Booking failed:', err);
+        console.error('Booking failed (HTTP error):', err);
+        alert('Booking failed. Please try again.');
       },
     });
   }

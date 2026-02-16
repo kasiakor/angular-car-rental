@@ -10,7 +10,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Router, RouterOutlet } from '@angular/router';
+import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { IUser, IUserResponse } from './interfaces/user.interface';
 import { UserService } from './services/user.service';
 
@@ -18,7 +18,7 @@ declare const bootstrap: any;
 
 @Component({
   selector: 'app-root',
-  imports: [FormsModule, RouterOutlet, CommonModule],
+  imports: [FormsModule, RouterOutlet, CommonModule, RouterLink],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })

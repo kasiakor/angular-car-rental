@@ -38,6 +38,14 @@
         </li>
       </ul>
 
+      @if (isLoggedIn) {
+        <ul class="navbar-nav gap-lg-2">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/my-bookings"> My Bookings </a>
+          </li>
+        </ul>
+      }
+
       <!-- Action -->
       @if (!isLoggedIn) {
         <button
